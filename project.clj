@@ -1,4 +1,4 @@
-(defproject tentacles "0.5.3-SNAPSHOT"
+(defproject clojure-garden/tentacles "0.5.3-SNAPSHOT"
   :description "A library for working with the Github API."
   :url "https://github.com/clojure-garden/tentacles"
   :license {:name "Eclipse Public License"
