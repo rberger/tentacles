@@ -9,4 +9,6 @@
                  ;; url has been archieved
                  [com.cemerick/url "0.1.1"]
                  [org.clojure/data.codec "0.1.1"]
+                 [com.cemerick/pomegranate "1.1.0"]
+                 [tupelo "0.9.144"]
                  [environ "1.1.0"]])

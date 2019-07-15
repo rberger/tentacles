@@ -1,6 +1,7 @@
 (ns tentacles.data
   "Implements the Git Data API: http://developer.github.com/v3/git/blobs/"
-  (:use [tentacles.core :only [api-call]]))
+  (:use [tentacles.core :only [api-call]]
+        [tupelo.base64 :as tb]))
 
 ;; ## Blobs
 
@@ -16,6 +17,24 @@
             (assoc options
               :content content
               :encoding encoding)))
+(defn strip
+  "Strip characters from string"
+  [coll chars]
+  (apply str (remove #((set chars) %) coll)))
+
+(defn content
+  "Get content."
+  [user repo file-path & [options]]
+  (api-call :get "/repos/%s/%s/contents/%s" [user repo file-path] options))
+
+(defn get-file
+  "Convience function to get file data via content and decode it from base64"
+  [user repo file-path & [options]]
+  (->
+   (content user repo file-path options)
+   (:content)
+   (strip "\n")
+   (tb/string-decode)))
 
 ;; ## Commits
 
